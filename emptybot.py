@@ -15,7 +15,7 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     api = API(auth)
 
-    # Get worldwide trending topics on Twiiter
+    # Get worldwide trending topics on Twitter
     trends = api.trends_place(1)
     data = trends[0]
     trending = [ trend['name'] for trend in data['trends'] ]
@@ -33,6 +33,7 @@ if __name__ == '__main__':
     stream.filter(track = [topic])
     print('Finished collecting tweets')
     tweets = collector.get_tweets()
-    for tweet in tweets:
-        print(tweet)
-
+    mc_model = MarkovChain(tweets)
+    mc_model.generate_model()
+    for i in range(50):
+        print(mc_model.generate_text())
