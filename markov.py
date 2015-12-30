@@ -1,7 +1,7 @@
 from random import random
 
 class MarkovChain:
-    
+
     def __init__(self, data):
         self.data = data
 
